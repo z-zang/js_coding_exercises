@@ -8,6 +8,11 @@
  */
 export const sumDigits = (n) => {
 	if (n === undefined) throw new Error('n is required');
+
+	const numArr = n.toString().split('').map(Number);
+	const totalSum = numArr.reduce((acc, curr) => acc += curr, 0);
+
+	return totalSum;
 };
 
 /**
@@ -18,13 +23,17 @@ export const sumDigits = (n) => {
  * @param {Number} end
  * @param {Number} step
  */
-export const createRange = (start, end, step) => {
+export const createRange = (start, end, step = 1) => {
 	if (start === undefined) throw new Error('start is required');
 	if (end === undefined) throw new Error('end is required');
-	if (step === undefined)
-		console.log(
-			"FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
-		);
+
+	const rangeArr = [];
+
+	for (let i = start; i <= end; i += step) {
+		rangeArr.push(i);
+	}
+
+	return rangeArr;
 };
 
 /**
@@ -59,12 +68,33 @@ export const createRange = (start, end, step) => {
 export const getScreentimeAlertList = (users, date) => {
 	if (users === undefined) throw new Error('users is required');
 	if (date === undefined) throw new Error('date is required');
+
+	const usersOverTimeLimit = [];
+
+	const daysOverLimitArr = (user) => {
+		return user.screenTime.filter(day => {
+			const hasUsedOnDay = day.date === date;
+			if (hasUsedOnDay) {
+				const minutesUsedArr = Object.values(day.usage);
+				const totalMinutes = minutesUsedArr.reduce((acc, curr) => acc + curr);
+				return totalMinutes > 100;
+			}
+			
+		});
+	} 
+
+	users.forEach((user) => {
+		const hasDaysOverLimit = daysOverLimitArr(user).length > 0;
+		hasDaysOverLimit && usersOverTimeLimit.push(user.username);
+	})
+
+	return usersOverTimeLimit;
 };
 
 /**
  * This function will receive a hexadecimal color code in the format #FF1133. A hexadecimal code is a number written in hexadecimal notation, i.e. base 16. If you want to know more about hexadecimal notation:
  * https://www.youtube.com/watch?v=u_atXp-NF6w
- * For colour codes, the first 2 chars (FF in this case) represent the amount of red, the next 2 chars (11) represent the amound of green, and the last 2 chars (33) represent the amount of blue.
+ * For colour codes, the first 2 chars (FF in this case) represent the amount of red, the next 2 chars (11) represent the amount of green, and the last 2 chars (33) represent the amount of blue.
  * Colours can also be represented in RGB format, using decimal notation.
  * This function should transform the hex code into an RGB code in the format:
  * "rgb(255,17,51)"
@@ -73,6 +103,12 @@ export const getScreentimeAlertList = (users, date) => {
  */
 export const hexToRGB = (hexStr) => {
 	if (hexStr === undefined) throw new Error('hexStr is required');
+	const hexColorArr = hexStr.substring(1, 7).match(/.{1,2}/g);
+	const rgbColorArr = hexColorArr.map((colour) => parseInt(colour, 16));
+
+	const rgbColorStr = `rgb(${[...rgbColorArr]})`;
+
+	return rgbColorStr;
 };
 
 /**
@@ -85,6 +121,40 @@ export const hexToRGB = (hexStr) => {
  * The function should return "X" if player X has won, "0" if the player 0 has won, and null if there is currently no winner.
  * @param {Array} board
  */
+
 export const findWinner = (board) => {
 	if (board === undefined) throw new Error('board is required');
+
+	const winningCombos = [
+		[0, 1, 2],
+		[3, 4, 5],
+		[6, 7, 8],
+		[0, 3, 6],
+		[1, 4, 7],
+		[2, 5, 8],
+		[0, 4, 8],
+		[2, 4, 6],
+	];
+
+	const placementBoard = {
+		'X': [],
+		'0': []
+	};
+
+	const checkWinner = (side) => {
+		board.forEach((line, lineIndex) => {
+			line.forEach((square, sqIndex) => {
+				const squarePlacement = lineIndex * 3 + sqIndex;
+				square === side && placementBoard[side].push(squarePlacement);
+			})
+		})
+		const winningCombo = winningCombos.find(combo => {
+			return combo.every((el) => placementBoard[side].includes(el));
+		})
+		return winningCombo;
+	}
+	if (checkWinner('X')) return 'X';
+	else if (checkWinner('0')) return '0';
+	else return null;
+
 };

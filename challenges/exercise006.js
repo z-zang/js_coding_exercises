@@ -12,6 +12,14 @@
  */
 export const sumMultiples = (arr) => {
 	if (arr === undefined) throw new Error('arr is required');
+
+	const total = arr.reduce((accTotal, currentValue) => {
+		const isValidMultiple = currentValue % 3 === 0 || currentValue % 5 === 0;
+
+		return isValidMultiple ? accTotal += currentValue : accTotal;
+	}, 0)
+
+	return total
 };
 
 /**
@@ -21,6 +29,9 @@ export const sumMultiples = (arr) => {
  */
 export const isValidDNA = (str) => {
 	if (str === undefined) throw new Error('str is required');
+
+	const dnaRegex = new RegExp('^[ACGT]+$');
+	return dnaRegex.test(str);
 };
 
 /**
@@ -30,6 +41,21 @@ export const isValidDNA = (str) => {
  */
 export const getComplementaryDNA = (str) => {
 	if (str === undefined) throw new Error('str is required');
+	const complementaryDnaArr = str.split('').map(((el) => {
+		switch(el) {
+			case 'A': 
+				return 'T';
+			case 'C':
+				return 'G'
+			case 'T':
+				return 'A';
+			case 'G':
+				return 'C';
+
+		}
+	}))
+
+	return complementaryDnaArr.join('');
 };
 
 /**
@@ -39,6 +65,19 @@ export const getComplementaryDNA = (str) => {
  */
 export const isItPrime = (n) => {
 	if (n === undefined) throw new Error('n is required');
+
+	if (n === 2) {
+		return true;
+	}
+	if (n < 2 || n % 2 === 0) {
+		return false;
+	}
+
+	for (let i = 3; i * i <= n; i += 2) {
+		if(n % i === 0) return false;
+	}
+
+	return true;
 };
 
 /**
@@ -55,6 +94,11 @@ export const isItPrime = (n) => {
 export const createMatrix = (n, fill) => {
 	if (n === undefined) throw new Error('n is required');
 	if (fill === undefined) throw new Error('fill is required');
+
+	const innerArrays = Array(n).fill(fill);
+	const outerArray = Array(n).fill(innerArrays);
+
+	return outerArray;
 };
 
 /**
@@ -72,4 +116,12 @@ export const createMatrix = (n, fill) => {
 export const areWeCovered = (staff, day) => {
 	if (staff === undefined) throw new Error('staff is required');
 	if (day === undefined) throw new Error('day is required');
+
+	let numOfStaffOnDay = 0;
+
+	staff.forEach((person) => {
+		person.rota.indexOf(day) !== -1 ? numOfStaffOnDay += 1 : null;
+	})
+
+	return numOfStaffOnDay >= 3;
 };

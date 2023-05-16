@@ -49,6 +49,12 @@ describe("count1sand0s", () => {
       1: 3,
       0: 1,
     });
+
+    // additional test case, if strings with other characters are permitted
+    expect(count1sand0s("1234567001")).toEqual({
+      1: 2,
+      0: 2,
+    });
   });
 });
 
