@@ -6,14 +6,14 @@ import {
   findWinner
 } from "../challenges/exercise007-optional";
 
-describe.only("sumMultiples", () => {
+describe("sumMultiples", () => {
   test("returns sum of digits of a number", () => {
     expect(sumDigits(12345)).toBe(15);
     expect(sumDigits(10000000001)).toBe(2);
   });
 });
 
-describe.only("createRange", () => {
+describe("createRange", () => {
   test("returns array of numbers starting and ending at provided values, of specified step", () => {
     expect(createRange(1, 9, 2)).toStrictEqual([1, 3, 5, 7, 9]);
     expect(createRange(12, 80, 16)).toStrictEqual([12, 28, 44, 60, 76]);
@@ -23,7 +23,7 @@ describe.only("createRange", () => {
   });
 });
 
-describe.only("getScreentimeAlertList", () => {
+describe("getScreentimeAlertList", () => {
   test("returns list ", () => {
     const mockUsers = [
       {
@@ -54,7 +54,7 @@ describe.only("getScreentimeAlertList", () => {
   });
 });
 
-describe.only("hexToRGB", () => {
+describe("hexToRGB", () => {
   test("returns ", () => {
     expect(hexToRGB('#FF1928')).toBe('rgb(255,25,40)');
     expect(hexToRGB('#A44200')).toBe('rgb(164,66,0)');
@@ -62,7 +62,7 @@ describe.only("hexToRGB", () => {
   });
 });
 
-describe.only("findWinner", () => {
+describe("findWinner", () => {
   test("returns ", () => {
     let mockResult = [
       ["X", "0", null],
