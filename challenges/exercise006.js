@@ -13,13 +13,11 @@
 export const sumMultiples = (arr) => {
 	if (arr === undefined) throw new Error('arr is required');
 
-	const total = arr.reduce((accTotal, currentValue) => {
+	return arr.reduce((accTotal, currentValue) => {
 		const isValidMultiple = currentValue % 3 === 0 || currentValue % 5 === 0;
 
 		return isValidMultiple ? accTotal += currentValue : accTotal;
 	}, 0)
-
-	return total
 };
 
 /**
@@ -96,9 +94,7 @@ export const createMatrix = (n, fill) => {
 	if (fill === undefined) throw new Error('fill is required');
 
 	const innerArrays = Array(n).fill(fill);
-	const outerArray = Array(n).fill(innerArrays);
-
-	return outerArray;
+	return Array(n).fill(innerArrays);
 };
 
 /**

@@ -13,14 +13,14 @@ export function isFromManchester(person) {
 export function getBusNumbers(people) {
 	if (people === undefined) throw new Error('people is required');
 	// Your code here!
-	return Math.ceil(people / 40);
+	const PEOPLE_PER_BUS = 40;
+	return Math.ceil(people / PEOPLE_PER_BUS);
 }
 
 export function countSheep(arr) {
 	if (arr === undefined) throw new Error('arr is required');
 	// Your code here!
-	const sheepArray = arr.filter((animal) => animal === 'sheep');
-	return sheepArray.length;
+	return arr.filter((animal) => animal === 'sheep').length;
 }
 
 export function hasMPostCode(person) {
@@ -31,3 +31,11 @@ export function hasMPostCode(person) {
 
 	return isMPostcode && isCityManchester;
 }
+/* 
+	Interpreting the requirement based on the the test cases, the 
+	solutions could also just be boiled down to: 
+
+	return person?.address?.city === 'Manchester';
+
+	(as Manchester will always have M in its postcode)
+*/

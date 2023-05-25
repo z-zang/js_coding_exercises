@@ -149,9 +149,9 @@ describe("duplicateNumbers", () => {
     let arr2 = [55, 23, 65, 0, 1];
     expect(duplicateNumbers(arr1, arr2)).toEqual([1, 55]);
 
-    arr1 = [1, 5, 88, 6, 7, 3, 2];
-    arr2 = [4, 1, 7, 3, 2];
-    expect(duplicateNumbers(arr1, arr2)).toEqual([1, 2, 3, 7]);
+    arr1 = [1, 5, 88, 6, 7, 3, 2, 11];
+    arr2 = [4, 1, 7, 3, 2, 11];
+    expect(duplicateNumbers(arr1, arr2)).toEqual([1, 2, 3, 7, 11]);
   });
 
   test("returns each number only once, even if it appears in one array multiple times", () => {

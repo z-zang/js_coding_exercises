@@ -21,6 +21,11 @@ describe("capitalize", () => {
   test("does nothing if the string is already capitalized", () => {
     expect(capitalize("Hello")).toBe("Hello");
   });
+
+  test("does nothing if the first character doesn't have an uppercase equivalent", () => {
+    expect(capitalize("!")).toBe("!");
+    expect(capitalize(" ")).toBe(" ");
+  });
 });
 
 describe("generateInitials", () => {

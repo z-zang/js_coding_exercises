@@ -4,9 +4,7 @@ export function getSquares(nums) {
 	if (nums === undefined) throw new Error('nums is required');
 	// Your code here!
 	if (nums.length === 0) return [];
-	const squares = nums.map((num) => num ** 2);
-
-	return squares;
+	return nums.map((num) => num ** 2);
 }
 
 export function camelCaseWords(words) {
@@ -34,10 +32,9 @@ export function checkIngredients(menu, ingredient) {
 	if (menu === undefined) throw new Error('menu is required');
 	if (!ingredient) throw new Error('ingredient is required');
 	// Your code here!
-	const doesMenuContainIngredients = menu.some(menuItem => {
-		return menuItem.ingredients.indexOf(ingredient) !== -1;
+	return menu.some(menuItem => {
+		return menuItem.ingredients.includes(ingredient);
 	})
-	return doesMenuContainIngredients;
 }
 
 export function duplicateNumbers(arr1, arr2) {
@@ -54,7 +51,11 @@ export function duplicateNumbers(arr1, arr2) {
 		isInArr2 && isInDuplicatesArr && duplicates.push(number);
 	})
 
-	const sortedDuplicates = duplicates.sort();
-
-	return sortedDuplicates;
+	return duplicates.sort((a, b) => a - b); 
+	/* 
+		I just realised for my previous submission, 
+		I didn't add a callback fn to .sort()! Have added a test
+		case to ensure numbers returned in ascending order
+	
+	*/
 }

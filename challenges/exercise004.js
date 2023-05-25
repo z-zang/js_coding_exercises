@@ -1,8 +1,7 @@
 export function findSmallNums(nums) {
 	if (!nums) throw new Error('nums is required');
 	// Your code here
-	const smallNums = nums.filter((num) => num < 1);
-	return smallNums;
+	return nums.filter((num) => num < 1);
 
 	/*	Alternative solution:
 
@@ -19,10 +18,9 @@ export function findNamesBeginningWith(names, char) {
 	if (!names) throw new Error('names is required');
 	if (!char) throw new Error('char is required');
 	// Your code here
-	const beginWithCharNamesArr = names.filter((personName) => {
+	return names.filter((personName) => {
 		return personName.charAt(0) === char;
 	})
-	return beginWithCharNamesArr;
 
 	/*	Alternative solution:
 		
@@ -40,13 +38,11 @@ export function findVerbs(words) {
 	if (!words) throw new Error('words is required');
 	// Your code here
 
-	const verbs = words.filter(word => {
+	return words.filter(word => {
 		const wordArray = word.split(' ');
 		const isVerb = wordArray[0] === 'to';
 		return isVerb;
 	})
-
-	return verbs;
 
 	/*	Alternative solution:
 
@@ -82,10 +78,9 @@ export function getIntegers(nums) {
 export function getCities(users) {
 	if (!users) throw new Error('users is required');
 	// Your code here
-	const cities = users.map(user => {
+	return users.map(user => {
 		return user.data.city.displayName;
 	})
-	return cities;
 
 	/*	Alternative solution:
 		
@@ -102,8 +97,7 @@ export function getCities(users) {
 export function getSquareRoots(nums) {
 	if (!nums) throw new Error('nums is required');
 	// Your code here
-	const squares = nums.map((num) => Math.round(Math.sqrt(num) * 100) / 100);
-	return squares;
+	return nums.map((num) => Math.round(Math.sqrt(num) * 100) / 100);
 
 	/*	Alternative solution:
 		

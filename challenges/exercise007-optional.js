@@ -10,9 +10,7 @@ export const sumDigits = (n) => {
 	if (n === undefined) throw new Error('n is required');
 
 	const numArr = n.toString().split('').map(Number);
-	const totalSum = numArr.reduce((acc, curr) => acc += curr, 0);
-
-	return totalSum;
+	return numArr.reduce((acc, curr) => acc += curr, 0);
 };
 
 /**
@@ -106,9 +104,7 @@ export const hexToRGB = (hexStr) => {
 	const hexColorArr = hexStr.substring(1, 7).match(/.{1,2}/g);
 	const rgbColorArr = hexColorArr.map((colour) => parseInt(colour, 16));
 
-	const rgbColorStr = `rgb(${[...rgbColorArr]})`;
-
-	return rgbColorStr;
+	return `rgb(${[...rgbColorArr]})`;
 };
 
 /**
